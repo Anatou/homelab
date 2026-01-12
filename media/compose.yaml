@@ -116,13 +116,15 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./radarr:/config
-      - /mnt/movies:/movies
+      - ./movies:/movies
       - ./downloads:/downloads
     ports:
       - 7878:7878
     networks:
       servarrnetwork:
         ipv4_address: 172.39.0.4
+    post_start:
+      - command: ["sh", "-c", "chown 1000:users /movies/"]
 
 #  bazarr:
 #    image: lscr.io/linuxserver/bazarr:latest
