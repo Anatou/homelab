@@ -6,3 +6,9 @@ This repo serves both as
 - A way to store my scripts
 
 This is not a complete documentation of my homelab. The main documentation is private in my obsidian vault
+
+To download specific files from the command line
+```bash
+apt update && apt install wget
+wget https://github.com/Anatou/homelab/raw/refs/heads/main/path/to/file.yaml
+```

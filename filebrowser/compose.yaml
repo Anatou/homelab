@@ -1,0 +1,13 @@
+services:
+  filebrowser:
+    image: gtstef/filebrowser:beta
+    environment:
+      FILEBROWSER_CONFIG: "./quantum.yaml" # overrides the default path which is ./config.yaml
+      FILEBROWSER_ADMIN_PASSWORD: "admin"
+      TZ: "Europe/Paris"
+    volumes:
+      - /mnt/movies:/folder # Do not use a root "/" directory or include the "/var" folder
+      - ./data:/home/filebrowser/data
+    ports:
+      - 80:80
+    restart: unless-stopped
