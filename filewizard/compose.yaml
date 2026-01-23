@@ -1,0 +1,21 @@
+# docker-compose.yml
+version: "3.9"
+services:
+  web:
+    image: loredcast/filewizard:latest
+    environment:
+      - LOCAL_ONLY=True # False for Auth
+      - SECRET_KEY= # set if using auth
+      - UPLOADS_DIR=/app/uploads # inside the container
+      - PROCESSED_DIR=/app/processed # inside the container
+      - OMP_NUM_THREADS=1
+      - DOWNLOAD_KOKORO_ON_STARTUP=true
+    ports:
+      - "6969:8000"
+    volumes:
+      - ./config:/app/config # settings.yml will be here
+      - ./uploads_data:/app/uploads
+      - ./processed_data:/app/processed
+volumes:
+  uploads_data: {}
+  processed_data: {}

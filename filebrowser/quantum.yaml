@@ -1,3 +1,4 @@
+# This goes in data/
 server:
   sources:
     - path: /folder
