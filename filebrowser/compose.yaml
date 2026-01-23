@@ -1,8 +1,10 @@
+# From https://filebrowserquantum.com/en/docs/getting-started/docker/
+
 services:
   filebrowser:
-    image: gtstef/filebrowser:beta
+    image: gtstef/filebrowser:latest
     environment:
-      FILEBROWSER_CONFIG: "./quantum.yaml" # overrides the default path which is ./config.yaml
+      FILEBROWSER_CONFIG: "data/quantum.yaml" # overrides the default path which is ./config.yaml
       FILEBROWSER_ADMIN_PASSWORD: "admin"
       TZ: "Europe/Paris"
     volumes:
