@@ -1,9 +1,9 @@
-# networks:
-#   obsidian-livesync:
-#     name: obsidian-livesync
-#     ipam:
-#       config:
-#         - subnet: 172.39.0.0/24
+networks:
+  obsidian-livesync:
+    name: obsidian-livesync
+    ipam:
+      config:
+        - subnet: 172.39.0.0/24
 
 services:
   couchdb:
@@ -37,9 +37,9 @@ services:
       - NET_ADMIN
     devices:
       - /dev/net/tun:/dev/net/tun
-    # networks:
-    #   obsidian-livesync:
-    #     ipv4_address: 172.39.0.1
+    networks:
+      obsidian-livesync:
+        ipv4_address: 172.39.0.1
     ports:
       - 5984:5984 # couchdb interface
     volumes:
