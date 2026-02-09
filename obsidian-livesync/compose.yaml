@@ -1,0 +1,54 @@
+# networks:
+#   obsidian-livesync:
+#     name: obsidian-livesync
+#     ipam:
+#       config:
+#         - subnet: 172.39.0.0/24
+
+services:
+  couchdb:
+    image: couchdb:latest
+    container_name: couchdb
+    user: 5984:5984
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
+    network_mode: service:gluetun
+    env_file:
+      - .env
+    environment:
+      - COUCHDB_USER=${COUCHDB_USER}  
+      - COUCHDB_PASSWORD=${COUCHDB_PASSWORD} 
+    volumes:
+      - ./couchdb-data:/opt/couchdb/data
+      - ./couchdb-etc:/opt/couchdb/etc/local.d
+    ports:
+      - 5984:5984
+    restart: unless-stopped
+
+  # We want to use AirVPN port forwaring as a reverse proxy
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    # networks:
+    #   obsidian-livesync:
+    #     ipv4_address: 172.39.0.1
+    ports:
+      - 5984:5984 # couchdb interface
+    volumes:
+      - ./gluetun:/gluetun
+    env_file:
+      - .env
+    healthcheck:
+      test: ping -c 1 www.google.com || exit 1
+      interval: 20s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped

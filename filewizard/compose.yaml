@@ -1,4 +1,3 @@
-# docker-compose.yml
 services:
   web:
     image: loredcast/filewizard:latest

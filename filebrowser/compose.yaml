@@ -4,7 +4,7 @@ services:
   filebrowser:
     image: gtstef/filebrowser:latest
     environment:
-      FILEBROWSER_CONFIG: "data/quantum.yaml" # overrides the default path which is ./config.yaml
+      FILEBROWSER_CONFIG: "data/quantum.yaml" 
       FILEBROWSER_ADMIN_PASSWORD: "admin"
       TZ: "Europe/Paris"
     volumes:
