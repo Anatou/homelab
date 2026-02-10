@@ -20,7 +20,10 @@ wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/com
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/.env
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/docker.ini
 mkdir couchdb-etc
+mkdir couchdb-data
 mv docker.ini couchdb-etc/
+chown -R 1000:1000 couchdb-data/
+chown -R 1000:1000 couchdb-etc/
 ```
 
 ## Configuration
@@ -42,12 +45,22 @@ Don't forget to specify `SERVER_COUNTRIES` and `SERVER_CITIES`
 Go to *[airvpn.org](https://airvpn.org) > Client Area > Port* and add a new port, write its value to the `FIREWALL_VPN_INPUT_PORTS` field in the .env file
 
 ### CouchDB
-Setup a user and password in the .env file<>
+Setup a user and password in the .env file
+
+### LiveSync
+Configure
 
 ## Start the service
 ```shell
 docker compose up -d
 ```
+## Setup the db
+Run couchdb-init.sh for initialise
+```shell
+docker exec -it couchdb bash -c "$(curl -fsSL https://raw.githubusercontent.com/vrtmrz/obsidian-livesync/main/utils/couchdb/couchdb-init.sh)"
+```
+
+
 
 # Usage
 In obsidian, install the Self-hosted LiveSync plugin and follow the instructions
