@@ -18,6 +18,9 @@ Github [obsidian-livesync](https://github.com/vrtmrz/obsidian-livesync?tab=readm
 apt update && apt install wget
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/compose.yaml
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/.env
+wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/docker.ini
+mkdir couchdb-etc
+mv docker.ini couchdb-etc/
 ```
 
 ## Configuration
@@ -33,11 +36,13 @@ AirVPN's configuration file values maps to the following fields in the .env file
 | WIREGUARD_PRESHARED_KEY | PresharedKey<br> |
 | WIREGUARD_ADDRESSES     | Address          |
 
+Don't forget to specify `SERVER_COUNTRIES` and `SERVER_CITIES`
+
 ### Port mapping
 Go to *[airvpn.org](https://airvpn.org) > Client Area > Port* and add a new port, write its value to the `FIREWALL_VPN_INPUT_PORTS` field in the .env file
 
 ### CouchDB
-Setup a user and password in the .env file
+Setup a user and password in the .env file<>
 
 ## Start the service
 ```shell
