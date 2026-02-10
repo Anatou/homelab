@@ -19,9 +19,11 @@ apt update && apt install wget
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/compose.yaml
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/.env
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/docker.ini
+wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/setup_db.sh
 mkdir couchdb-etc
 mkdir couchdb-data
 mv docker.ini couchdb-etc/
+chmod +x setup_db.sh
 chown -R 1000:1000 couchdb-data/
 chown -R 1000:1000 couchdb-etc/
 ```
@@ -55,12 +57,10 @@ Configure
 docker compose up -d
 ```
 ## Setup the db
-Run couchdb-init.sh for initialise
+Run setup_db.sh to initialise the db
 ```shell
-docker exec -it couchdb bash -c "$(curl -fsSL https://raw.githubusercontent.com/vrtmrz/obsidian-livesync/main/utils/couchdb/couchdb-init.sh)"
+./setup_db.sh
 ```
-
-
 
 # Usage
 In obsidian, install the Self-hosted LiveSync plugin and follow the instructions
