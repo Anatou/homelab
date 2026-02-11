@@ -44,7 +44,7 @@ services:
       obsidian-livesync:
         ipv4_address: 172.38.0.2
     ports:
-      - 0.0.0.0:${FIREWALL_VPN_INPUT_PORTS}:${FIREWALL_VPN_INPUT_PORTS} # couchdb interface
+      - 0.0.0.0:${FIREWALL_VPN_INPUT_PORTS}:${FIREWALL_VPN_INPUT_PORTS}
     volumes:
       - ./gluetun:/gluetun
     env_file:
