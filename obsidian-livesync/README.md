@@ -19,6 +19,7 @@ apt update && apt install wget
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/compose.yaml
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/.env
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/docker.ini
+wget https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/Dockerfile
 mkdir couchdb-etc
 mkdir couchdb-data
 mv docker.ini couchdb-etc/
@@ -46,15 +47,24 @@ Go to *[airvpn.org](https://airvpn.org) > Client Area > Port* and add a new port
 - write its value to the `FIREWALL_VPN_INPUT_PORTS` field in the *.env* file
 - write its value to the `port` sections in the *docker.ini*
 
+Optionnaly you can specify a domain name for airvpn DDNS. It may be used later when configuring DeSEC DDNS.
+
 ### CouchDB
-Setup a user and password in the .env file
+Setup any user and password in the .env file
+
+### DDNS
+In order to get HTTPS we need to validate a challenge presented by the ACME. Because we do not have port 80 we will use DNS-01, a DNS-control based challenge.
+
+Go to *[DeSEC](https://desec.io/domains)* and use or create a new domain, then make a new *A* rule pointing to your VPN IP or a *CNAME* rule pointing to the DDNS name you may have set for the forwarded port.
+
+Then go to *[tokens](https://desec.io/tokens)* and make a new token (or use an old one) and paste it in the *.env* file
 
 ## Start the service
 ```shell
 docker compose up -d
 ```
 ## Setup the db
-Run setup_db.sh to initialise the db
+Run setup_db.sh to initialise the db for the plugin
 ```shell
 bash -c "$(https://github.com/Anatou/homelab/raw/refs/heads/main/obsidian-livesync/setup_db.sh)"
 ```

@@ -6,32 +6,6 @@ networks:
         - subnet: 172.38.0.0/24
 
 services:
-  couchdb:
-    image: couchdb:latest
-    container_name: couchdb
-    user: 1000:1000
-    labels:
-      - deunhealth.restart.on.unhealthy=true
-    depends_on:
-      gluetun:
-        condition: service_healthy
-        restart: true
-    network_mode: service:gluetun
-    env_file:
-      - .env
-    environment:
-      - COUCHDB_PORT=${FIREWALL_VPN_INPUT_PORTS}
-    volumes:
-      - ./couchdb-data:/opt/couchdb/data
-      - ./couchdb-etc:/opt/couchdb/etc/local.d
-    restart: unless-stopped
-    healthcheck:
-      test: ping -c 1 www.google.com || exit 1
-      interval: 60s
-      retries: 3
-      start_period: 20s
-      timeout: 10s
-
   # We want to use AirVPN port forwaring as a reverse proxy
   gluetun:
     image: qmcgaw/gluetun
@@ -44,7 +18,7 @@ services:
       obsidian-livesync:
         ipv4_address: 172.38.0.2
     ports:
-      - 0.0.0.0:${FIREWALL_VPN_INPUT_PORTS}:${FIREWALL_VPN_INPUT_PORTS}
+      - 0.0.0.0:${FIREWALL_VPN_INPUT_PORTS}:443 # Goes to caddy
     volumes:
       - ./gluetun:/gluetun
     env_file:
@@ -55,3 +29,55 @@ services:
       timeout: 10s
       retries: 5
     restart: unless-stopped
+
+  # CouchDB will act as a backend for livesync
+  couchdb:
+    image: couchdb:latest
+    container_name: couchdb
+    user: 1000:1000
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
+    network_mode: service:gluetun
+    env_file:
+      - .env
+    labels:
+      caddy: ${DOMAIN}:${FIREWALL_VPN_INPUT_PORTS}
+      # To avoid being crawled by Malicious Web Crawlers, 
+      # - Make index page to be forbidden.
+      # - Set CouchDB into subdirectory
+      caddy.handle_path: /*
+      caddy.handle_path.0_respond: "\"\" 403"
+      caddy.handle_path.0_header.-Server: ""
+      caddy.handle_path_1: /e=_/* 
+      caddy.handle_path_1.0_reverse_proxy: "127.0.0.1:${COUCHDB_PORT}" # Routed to couchdb
+      deunhealth.restart.on.unhealthy: true
+    volumes:
+      - ./couchdb-data:/opt/couchdb/data
+      - ./couchdb-etc:/opt/couchdb/etc/local.d
+    restart: unless-stopped
+    healthcheck:
+      test: ping -c 1 www.google.com || exit 1
+      interval: 60s
+      retries: 3
+      start_period: 20s
+      timeout: 10s
+
+  # Caddy for auto SSL certificate
+  caddy:
+    # We use a custom image built with caddy-dns
+    build: .
+    container_name: caddy
+    environment:
+        - CADDY_INGRESS_NETWORKS=obsidian-livesync
+    network_mode: service:gluetun
+    labels:
+      caddy.acme_dns: desec
+      caddy.acme_dns.token: "${DESEC_TOKEN}"
+
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./caddy-data:/data
+        - ./caddy-config:/config
+    restart: always
