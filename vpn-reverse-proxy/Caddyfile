@@ -21,7 +21,8 @@
 		import generic-log
 	}
 
-	@homepage host homepage.{$DOMAIN} {
+	@homepage host homepage.{$DOMAIN}
+	handle @homepage {
 		reverse_proxy {$HOMEPAGE_IP}:{$HOMEPAGE_PORT}
 		import generic-log
 	}
