@@ -8,7 +8,9 @@
 
 localhost:2020 {
 	tls internal
-	respond "It workks !\n" 200 { close }
+	respond "It workks !\n" 200 { 
+		close 
+	}
 }
 
 *.{$DOMAIN}:{$FIREWALL_VPN_INPUT_PORTS} {
@@ -20,7 +22,7 @@ localhost:2020 {
 
 	@foo host foo.{$DOMAIN}
 	handle @foo {
-		respond "Foo!" 200 {
+		respond "Bar\n" 200 {
 			close
 		}
 		import generic-log
