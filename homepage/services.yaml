@@ -6,105 +6,105 @@
     - Proxatou:
         widget:
           type: proxmox
-          url: https://{{IP_PROXATOU}}:8006
-          username: {{PROXMOX_USER}}
-          password: {{PROXMOX_TOKEN}}
+          url: https://{{HOMEPAGE_VAR_IP_PROXATOU}}:8006
+          username: {{HOMEPAGE_VAR_PROXMOX_USER}}
+          password: {{HOMEPAGE_VAR_PROXMOX_TOKEN}}
           node: proxatou
     - Proxelite:
         widget:
           type: proxmox
           url: https://{{IP_PROXELITE}}:8006
-          username: {{PROXMOX_USER}}
-          password: {{PROXMOX_TOKEN}}
+          username: {{HOMEPAGE_VAR_PROXMOX_USER}}
+          password: {{HOMEPAGE_VAR_PROXMOX_TOKEN}}
           node: proxelite
 
 - Media services:
     - Jellyfin:
-        href: http://{{IP_JELLYFIN}}:8096/web/#/home
+        href: http://{{HOMEPAGE_VAR_IP_JELLYFIN}}:8096/web/#/home
         description: Media server
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fazukaar.github.io%2Fcosmos-servapps-official%2Fservapps%2FJellyfin%2Ficon.png&f=1&nofb=1&ipt=499c6721db3f7f47140b3d5f1a3f8e213f7751e714847183c75cab2fbc8ab411
-        proxmoxNode: {{JELLYFIN_PROXMOX_NODE}}
-        proxmoxVMID: {{JELLYFIN_PROXMOX_VMID}}
-        proxmoxType: {{JELLYFIN_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_JELLYFIN_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_JELLYFIN_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_JELLYFIN_PROXMOX_TYPE}}
     - Jellyseer:
-        href: http://{{IP_JELLYSEER}}:5055
+        href: http://{{HOMEPAGE_VAR_IP_JELLYSEER}}:5055
         description: Media requesting service for Jellyfin
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fhomarr-labs%2Fdashboard-icons%2Fpng%2Fjellyseerr.png&f=1&nofb=1&ipt=594e314f5d3d990f366eb95490aad8046ea748b66bdc0d2de7c624f997075aa5
-        proxmoxNode: {{MEDIA_PROXMOX_NODE}}
-        proxmoxVMID: {{MEDIA_PROXMOX_VMID}}
-        proxmoxType: {{MEDIA_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_MEDIA_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_MEDIA_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_MEDIA_PROXMOX_TYPE}}
     - Radarr (movies):
-        href: http://{{IP_RADARR}}:7878/
+        href: http://{{HOMEPAGE_VAR_IP_RADARR}}:7878/
         description: Link between movie requests and downloads
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fratingposterdb.com%2Fget-started%2Fradarr-logo.png&f=1&nofb=1&ipt=3696e1ffd57da95afe80079fc16ba3f61260cf20c1a98c12f17eb7ba07e910d4
-        proxmoxNode: {{MEDIA_PROXMOX_NODE}}
-        proxmoxVMID: {{MEDIA_PROXMOX_VMID}}
-        proxmoxType: {{MEDIA_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_MEDIA_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_MEDIA_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_MEDIA_PROXMOX_TYPE}}
         widget:
           type: radarr
-          url: http://{{IP_RADARR}}:7878/
-          key: {{RADARR_TOKEN}}
+          url: http://{{HOMEPAGE_VAR_IP_RADARR}}:7878/
+          key: {{HOMEPAGE_VAR_RADARR_TOKEN}}
     - qBitTorrent:
-        href: http://{{IP_QBITTORRENT}}:8080/
+        href: http://{{HOMEPAGE_VAR_IP_QBITTORRENT}}:8080/
         description: Torrent downloader
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F1381%2FPNG%2F512%2Fqbittorrent_93768.png&f=1&nofb=1&ipt=2d8e5d77a8c1aa260abd31e368574cc44ac83127785455d8b273df1ce8bf6eea
-        proxmoxNode: {{MEDIA_PROXMOX_NODE}}
-        proxmoxVMID: {{MEDIA_PROXMOX_VMID}}
-        proxmoxType: {{MEDIA_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_MEDIA_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_MEDIA_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_MEDIA_PROXMOX_TYPE}}
         widget:
           type: qbittorrent
-          url: http://{{IP_QBITTORRENT}}:8080
-          username: {{QBITTORRENT_USER}}
-          password: {{QBITTORRENT_PASSWD}}
+          url: http://{{HOMEPAGE_VAR_IP_QBITTORRENT}}:8080
+          username: {{HOMEPAGE_VAR_QBITTORRENT_USER}}
+          password: {{HOMEPAGE_VAR_QBITTORRENT_PASSWD}}
     - Prowlarr:
-        href: http://{{IP_PROWLARR}}:9696/
+        href: http://{{HOMEPAGE_VAR_IP_PROWLARR}}:9696/
         description: Media indexer
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fprowlarr.com%2Flogo%2F128.png&f=1&nofb=1&ipt=ca36e1fc897f94d73bf6e2e9adedbfa1e2a336a02437d6b2caa21d2ac5b7a60b
-        proxmoxNode: {{MEDIA_PROXMOX_NODE}}
-        proxmoxVMID: {{MEDIA_PROXMOX_VMID}}
-        proxmoxType: {{MEDIA_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_MEDIA_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_MEDIA_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_MEDIA_PROXMOX_TYPE}}
 
 - Utility services:
     - BentoPDF:
-        href: https://{{IP_BENTOPDF}}:8443/
+        href: https://{{HOMEPAGE_VAR_IP_BENTOPDF}}:8443/
         description: PDF manipulation
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fhomarr-labs%2Fdashboard-icons%2Fpng%2Fbentopdf.png&f=1&nofb=1&ipt=bc29fe1e48399dc38c968c8ce681657502b08bd7a5c5b696682551c6a79a980d
-        proxmoxNode: {{BENTOPDF_PROXMOX_NODE}}
-        proxmoxVMID: {{BENTOPDF_PROXMOX_VMID}}
-        proxmoxType: {{BENTOPDF_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_BENTOPDF_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_BENTOPDF_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_BENTOPDF_PROXMOX_TYPE}}
     - ConvertX:
-        href: http://{{IP_CONVERTX}}:3000
+        href: http://{{HOMEPAGE_VAR_IP_CONVERTX}}:3000
         description: File converter
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.a2zconverter.com%2Fpublic%2Fassets2%2Fimg%2Ficon%2Ffile-conversion.png&f=1&nofb=1&ipt=3bb39be8c74b5c8d9ad51feb9fd2466b141047e4ec53691676a81730a7fbd027
-        proxmoxNode: {{CONVERTX_PROXMOX_NODE}}
-        proxmoxVMID: {{CONVERTX_PROXMOX_VMID}}
-        proxmoxType: {{CONVERTX_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_CONVERTX_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_CONVERTX_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_CONVERTX_PROXMOX_TYPE}}
     - Quantum FileBrowser:
-        href: http://{{IP_FILEBROWSER}}.105
+        href: http://{{HOMEPAGE_VAR_IP_FILEBROWSER}}.105
         description: Simple file browser
         icon: https://private-user-images.githubusercontent.com/42989099/505675340-c40b22c9-33da-47b7-bc4c-ce69bb5cc174.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzY0MDg2MTIsIm5iZiI6MTc3NjQwODMxMiwicGF0aCI6Ii80Mjk4OTA5OS81MDU2NzUzNDAtYzQwYjIyYzktMzNkYS00N2I3LWJjNGMtY2U2OWJiNWNjMTc0LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA0MTclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwNDE3VDA2NDUxMlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWMwNWQ3YmUxNzhmMDBiMWVjYTU3OTc1ZGFjNjgzZmVlMTEzYzFkZjc2ODAzYWU3ZjM2OGEyODcwOWM5NWMxN2EmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.YRvAXbhwf8a6ZSaJPjWq5IKfIqdii6Vcm1eIx28F4RA
-        proxmoxNode: {{FILEBROWSER_PROXMOX_NODE}}
-        proxmoxVMID: {{FILEBROWSER_PROXMOX_VMID}}
-        proxmoxType: {{FILEBROWSER_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_FILEBROWSER_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_FILEBROWSER_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_FILEBROWSER_PROXMOX_TYPE}}
     - Wallos:
-        href: http://{{IP_WALLOS}}:8282
+        href: http://{{HOMEPAGE_VAR_IP_WALLOS}}:8282
         description: Subscription manager
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.xdaimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F03%2Fwallos-icon.png%3Fq%3D70%26fit%3Dcontain%26w%3D420%26dpr%3D1&f=1&nofb=1&ipt=74256fe9d9f3667f1abd526216b2760c0ddf4a8dac8961d51627d0742cd1be7e
-        proxmoxNode: {{WALLOS_PROXMOX_NODE}}
-        proxmoxVMID: {{WALLOS_PROXMOX_VMID}}
-        proxmoxType: {{WALLOS_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_WALLOS_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_WALLOS_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_WALLOS_PROXMOX_TYPE}}
     - Ebook2Audiobook:
-        href: http://{{IP_EBOOK2AUDIOBOOK}}:7860
+        href: http://{{HOMEPAGE_VAR_IP_EBOOK2AUDIOBOOK}}:7860
         description: Convert any text (txt, pdf, ebook, ...) into an audiobook
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F8446%2F8446839.png&f=1&nofb=1&ipt=14e642c011a6df4d08a17ae07ee748b2e84949388303b63bb90bbdb77829e7ba
-        proxmoxNode: {{EBOOK2AUDIOBOOK_PROXMOX_NODE}}
-        proxmoxVMID: {{EBOOK2AUDIOBOOK_PROXMOX_VMID}}
-        proxmoxType: {{EBOOK2AUDIOBOOK_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_EBOOK2AUDIOBOOK_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_EBOOK2AUDIOBOOK_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_EBOOK2AUDIOBOOK_PROXMOX_TYPE}}
 
 - Background services:
     - Obisidian livesync:
         description: Live synchronization for obsidian
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F10%2F2023_Obsidian_logo.svg%2F512px-2023_Obsidian_logo.svg.png&f=1&nofb=1&ipt=2ad8042dcc1ee91ffa2714fb48f9f4b8c7fd96af69b66d44af997a90008031bd
-        proxmoxNode: {{OBSIDIAN_PROXMOX_NODE}}
-        proxmoxVMID: {{OBSIDIAN_PROXMOX_VMID}}
-        proxmoxType: {{OBSIDIAN_PROXMOX_TYPE}}
+        proxmoxNode: {{HOMEPAGE_VAR_OBSIDIAN_PROXMOX_NODE}}
+        proxmoxVMID: {{HOMEPAGE_VAR_OBSIDIAN_PROXMOX_VMID}}
+        proxmoxType: {{HOMEPAGE_VAR_OBSIDIAN_PROXMOX_TYPE}}

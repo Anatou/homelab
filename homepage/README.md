@@ -9,7 +9,7 @@ Github [homepage](https://github.com/gethomepage/homepage/) project
 **Setup on a LXC**
 `bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/homepage.sh)"`
 
-## Pull files
+## Pull the files
 
 ```bash
 apt update && apt install wget
@@ -21,9 +21,20 @@ chmod +x update-env.sh
 ./update.sh
 ```
 
-## Configuration
+## `.env` file configuration
 
 Configure the .env file with the service's ip, token, and other infos.
+
+## Edit the service
+
+You need to edit homepage's systemd service in order to use the `.env` file.
+
+To do so, edit `nano /etc/systemd/system/homepage.service` to add the following line in the `[Service]` section:
+```txt
+EnvironmentFile=/root/.env
+```
+
+Then run `systemctl daemon-reload && systemctl restart homepage.service` to apply settings and restart the service.
 
 # Usage
 
