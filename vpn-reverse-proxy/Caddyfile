@@ -1,6 +1,6 @@
-{
-    acme_dns desec {$DESEC_TOKEN}
-}
+# {
+#     acme_dns desec {$DESEC_TOKEN}
+# }
 
 (glog) {
 	log {
@@ -11,6 +11,12 @@
 }
 
 *.{$DOMAIN} {
+	tls {
+		dns desec {
+			token "{$DESEC_TOKEN}"
+		}
+	}
+
 	@foo host foo.{$DOMAIN}
 	handle @foo {
 		respond "Foo!"
