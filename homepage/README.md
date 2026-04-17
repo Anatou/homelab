@@ -14,13 +14,11 @@ Github [homepage](https://github.com/gethomepage/homepage/) project
 ```bash
 apt update && apt install wget
 wget https://github.com/Anatou/homelab/raw/refs/heads/main/homepage/.env
-wget https://github.com/Anatou/homelab/raw/refs/heads/main/homepage/proxmox.yaml
-wget https://github.com/Anatou/homelab/raw/refs/heads/main/homepage/services.yaml
-wget https://github.com/Anatou/homelab/raw/refs/heads/main/homepage/settings.yaml
-
-mv proxmox.yaml /opt/homepage/config/proxmox.yaml
-mv services.yaml /opt/homepage/config/services.yaml
-mv settings.yaml /opt/homepage/config/settings.yaml
+wget https://github.com/Anatou/homelab/raw/refs/heads/main/homepage/update.sh
+wget https://github.com/Anatou/homelab/raw/refs/heads/main/homepage/update-env.sh
+chmod +x update.sh
+chmod +x update-env.sh
+./update.sh
 ```
 
 ## Configuration
@@ -30,3 +28,11 @@ Configure the .env file with the service's ip, token, and other infos.
 # Usage
 
 Go to `http://<homepage_ip>` and enjoy !
+
+# Update
+
+Run `./update.sh` to update homepage's cosmetic settings.
+
+It will not update the `.env` file, you need to run separately `./update-env.sh` to update it. This separation allows for easy cosmetic update with the `./update.sh` script.
+
+The `./update-env.sh` script is not able to properly merge your settings so it appends them together, you need to remove the obsolete lines.
