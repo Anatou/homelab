@@ -23,7 +23,7 @@
 	}
 
 	handle {
-		repond "Nope!"
+		respond "Nope!"
 	}
 }
 
