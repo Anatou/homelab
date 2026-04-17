@@ -1,16 +1,12 @@
-# {
-#     acme_dns desec {$DESEC_TOKEN}
-# }
-
-(glog) {
+(generic-log) {
 	log {
 		output file
-		filename "caddy.log"
+		filename "/var/log/caddy.log"
 		roll_local_time true
 	}
 }
 
-*.{$DOMAIN} {
+*.{$DOMAIN}:{$FIREWALL_VPN_INPUT_PORTS} {
 	tls {
 		dns desec {
 			token "{$DESEC_TOKEN}"
@@ -19,18 +15,21 @@
 
 	@foo host foo.{$DOMAIN}
 	handle @foo {
-		respond "Foo!"
+		respond "Foo!" 200 {
+			close
+		}
+		import generic-log
+	}
+
+	@homepage host homepage.{$DOMAIN} {
+		reverse_proxy {$HOMEPAGE_IP}:{$HOMEPAGE_PORT}
+		import generic-log
 	}
 
 	handle {
-		respond "Nope!"
+		abort
 	}
 }
-
-#homepage.{$DOMAIN} {
-#	reverse_proxy {$HOMEPAGE_IP}:{$HOMEPAGE_PORT}
-#	import glog
-#}
 
 
 
