@@ -6,6 +6,11 @@
 	}
 }
 
+localhost:2020 {
+	tls internal
+	respond "It workks !\n" 200 { close }
+}
+
 *.{$DOMAIN}:{$FIREWALL_VPN_INPUT_PORTS} {
 	tls {
 		dns desec {
