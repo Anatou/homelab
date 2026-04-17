@@ -15,11 +15,12 @@ The aim of this reverse proxy is to use [AirVPN's](https://airvpn.org/) port for
 ## Pull files
 
 ```bash
-apt update && apt install wget
-wget https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/compose.yaml
-wget https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/.env
-wget https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/Caddyfile
-wget https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/Dockerfile
+curl -L https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/compose.yaml > compose.yaml
+curl -L https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/.env > .env
+curl -L https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/Caddyfile > Caddyfile
+curl -L https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/Dockerfile > Dockerfile
+curl -L https://github.com/Anatou/homelab/raw/refs/heads/main/vpn-reverse-proxy/update.sh > update.sh
+chmod +x update.sh
 ```
 
 ## Configuration

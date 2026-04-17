@@ -4,7 +4,7 @@ networks:
     ipam:
       config:
         - subnet: 172.37.0.0/24
-		
+
 services:
   # We want to use AirVPN port forwaring as a public entry point
   gluetun:
@@ -38,6 +38,8 @@ services:
     environment:
         - CADDY_INGRESS_NETWORKS=reverse-proxy
     network_mode: service:gluetun
+    env_file:
+      - .env
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - ./caddy-data:/data

@@ -10,7 +10,9 @@
 }
 
 *.{$DOMAIN} {
-	acme_dns desec {$DESEC_TOKEN}
+	tls {
+		dns desec {$DESEC_TOKEN}
+	}
 
 	@foo host foo.{$DOMAIN}
 	handle @foo {

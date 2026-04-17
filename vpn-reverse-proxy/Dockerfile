@@ -2,7 +2,7 @@ ARG CADDY_VERSION=2.6.1
 FROM caddy:${CADDY_VERSION}-builder AS builder
 
 RUN xcaddy build \
-    --with github.com/caddy-dns/desec \
+    --with github.com/caddy-dns/desec
 
 FROM caddy:${CADDY_VERSION}-alpine
 
