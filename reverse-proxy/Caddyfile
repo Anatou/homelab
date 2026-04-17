@@ -1,7 +1,36 @@
-{
-    acme_dns desec {$DESEC_TOKEN}
+#{
+#    acme_dns desec {$DESEC_TOKEN}
+#}
+(glog) {
+	log {
+		output file
+		filename "caddy.log"
+		roll_local_time true
+	}
 }
 
+*.{$DOMAIN} {
+	acme_dns desec {$DESEC_TOKEN}
+
+	@foo host foo.{$DOMAIN}
+	handle @foo {
+		respond "Foo!"
+	}
+
+	handle {
+		abort
+	}
+}
+
+#homepage.{$DOMAIN} {
+#	reverse_proxy {$HOMEPAGE_IP}:{$HOMEPAGE_PORT}
+#	import glog
+#}
+
+
+
 #{$DOMAIN}/route:port {
+	#redir /homepage /homepage/
 #	reverse_proxy ip:port
+#	import glog
 #}

@@ -6,7 +6,7 @@ networks:
         - subnet: 172.37.0.0/24
 		
 services:
-  # We want to use AirVPN port forwaring as a public reverse proxy
+  # We want to use AirVPN port forwaring as a public entry point
   gluetun:
     image: qmcgaw/gluetun
     container_name: gluetun
@@ -30,7 +30,7 @@ services:
       retries: 5
     restart: unless-stopped
 
-  # Caddy for private reverse-proxy
+  # Caddy for reverse-proxy
   caddy:
     # We use a custom image built with caddy-dns
     build: .
@@ -38,12 +38,9 @@ services:
     environment:
         - CADDY_INGRESS_NETWORKS=reverse-proxy
     network_mode: service:gluetun
-    labels:
-      caddy.acme_dns: desec
-      caddy.acme_dns.token: "${DESEC_TOKEN}"
-
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - ./caddy-data:/data
         - ./caddy-config:/config
+        - ./Caddyfile:/etc/caddy/Caddyfile
     restart: always
