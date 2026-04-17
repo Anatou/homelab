@@ -1,8 +1,14 @@
-(generic-log) {
-	log {
-		output file
-		filename "/var/log/caddy.log"
-		roll_local_time true
+(anatou-dedyn-log) {
+	log anatou-dedyn-log {
+		output file /var/log/caddy.log {
+			roll_local_time
+		}
+	}
+}
+
+(local-log) {
+	log local-log {
+		output stdout
 	}
 }
 
@@ -11,6 +17,7 @@ localhost:2020 {
 	respond "It works !\n" 200 { 
 		close 
 	}
+	import local-log
 }
 
 *.{$DOMAIN}:{$FIREWALL_VPN_INPUT_PORTS} {
@@ -25,13 +32,13 @@ localhost:2020 {
 		respond "Bar\n" 200 {
 			close
 		}
-		import generic-log
+		import anatou-dedyn-log
 	}
 
 	@homepage host homepage.{$DOMAIN}
 	handle @homepage {
 		reverse_proxy {$HOMEPAGE_IP}:{$HOMEPAGE_PORT}
-		import generic-log
+		import anatou-dedyn-log
 	}
 
 	handle {
