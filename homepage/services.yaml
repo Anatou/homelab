@@ -13,7 +13,7 @@
     - Proxelite:
         widget:
           type: proxmox
-          url: https://{{IP_PROXELITE}}:8006
+          url: https://{{HOMEPAGE_VAR_IP_PROXELITE}}:8006
           username: {{HOMEPAGE_VAR_PROXMOX_USER}}
           password: {{HOMEPAGE_VAR_PROXMOX_TOKEN}}
           node: proxelite
