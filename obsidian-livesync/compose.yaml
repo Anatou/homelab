@@ -4,7 +4,7 @@ networks:
     ipam:
       config:
         - subnet: 172.38.0.0/24
-
+		
 services:
   # We want to use AirVPN port forwaring as a reverse proxy
   gluetun:

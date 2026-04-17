@@ -1,0 +1,8 @@
+proxatou:
+  url: https://{{IP_PROXATOU}}:8006
+  token: {{PROXMOX_USER}}
+  secret: {{PROXMOX_TOKEN}}
+proxelite:
+  url: https://{{IP_PROXELITE}}:8006
+  token: {{PROXMOX_USER}}
+  secret: {{PROXMOX_TOKEN}}

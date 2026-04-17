@@ -1,0 +1,7 @@
+{
+    acme_dns desec {$DESEC_TOKEN}
+}
+
+#{$DOMAIN}/route:port {
+#	reverse_proxy ip:port
+#}

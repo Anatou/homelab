@@ -1,0 +1,16 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+#providers:
+#  openweathermap: openweathermapapikey
+#  weatherapi: weatherapiapikey
+
+title: My Homelab
+
+layout:
+  Proxmox Nodes:
+    style: row
+    columns: 2
+    header: true
+    icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.excellent.co.id%2Fwp-content%2Fuploads%2F2014%2F07%2FProxmox_symbol.png&f=1&nofb=1&ipt=cdf91ef37215b53de7eaba1f5d1da1e26d23b7c79b39630e6eb7c3fbad939989
