@@ -47,6 +47,12 @@ localhost:2020 {
 		#import anatou-dedyn-log
 	}
 
+	@jellyfin host jellyfin.{$DOMAIN}
+	handle @jellyfin {
+		reverse_proxy {$JELLYFIN_IP}:{$JELLYFIN_PORT}
+		#import anatou-dedyn-log
+	}
+
 	handle {
 		abort
 	}
