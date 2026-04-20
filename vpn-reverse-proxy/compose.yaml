@@ -4,6 +4,9 @@ networks:
     ipam:
       config:
         - subnet: 172.37.0.0/24
+  host:
+    name: host
+    external: true
 
 services:
   # We want to use AirVPN port forwaring as a public entry point
@@ -15,8 +18,9 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     networks:
-      reverse-proxy:
+      - reverse-proxy:
         ipv4_address: 172.37.0.2
+      - host
     ports:
       - 0.0.0.0:${FIREWALL_VPN_INPUT_PORTS}:443 # Goes to caddy
     volumes:
@@ -36,13 +40,13 @@ services:
     build: .
     container_name: caddy
     environment:
-        - CADDY_INGRESS_NETWORKS=reverse-proxy
+      - CADDY_INGRESS_NETWORKS=reverse-proxy
     network_mode: service:gluetun
     env_file:
       - .env
     volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - ./caddy-data:/data
-        - ./caddy-config:/config
-        - ./Caddyfile:/etc/caddy/Caddyfile
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./caddy-data:/data
+      - ./caddy-config:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile
     restart: always
