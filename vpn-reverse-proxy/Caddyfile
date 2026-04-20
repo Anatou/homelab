@@ -1,6 +1,6 @@
 (anatou-dedyn-log) {
 	log anatou-dedyn-log {
-		output file /var/log/caddy.log {
+		output file /var/log/anatou-dedyn.log {
 			roll_local_time
 		}
 	}
@@ -27,30 +27,28 @@ localhost:2020 {
 		}
 	}
 
+	import anatou-dedyn-log
+
 	@foo host foo.{$DOMAIN}
 	handle @foo {
 		respond "Bar\n" 200 {
 			close
 		}
-		#import anatou-dedyn-log
 	}
 
 	@homepage host homepage.{$DOMAIN}
 	handle @homepage {
 		reverse_proxy {$HOMEPAGE_IP}:{$HOMEPAGE_PORT}
-		#import anatou-dedyn-log
 	}
 
 	@foundry host foundry.{$DOMAIN}
 	handle @foundry {
 		reverse_proxy {$FOUNDRY_IP}:{$FOUNDRY_PORT}
-		#import anatou-dedyn-log
 	}
 
 	@jellyfin host jellyfin.{$DOMAIN}
 	handle @jellyfin {
 		reverse_proxy {$JELLYFIN_IP}:{$JELLYFIN_PORT}
-		#import anatou-dedyn-log
 	}
 
 	handle {
