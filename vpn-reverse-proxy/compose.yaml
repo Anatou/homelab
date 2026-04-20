@@ -4,9 +4,16 @@ networks:
     ipam:
       config:
         - subnet: 172.37.0.0/24
-  host:
-    name: host
-    external: true
+  local:
+    name: local
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+          gateway: 192.168.100.1
+
 
 services:
   # We want to use AirVPN port forwaring as a public entry point
@@ -18,9 +25,9 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     networks:
-      - reverse-proxy:
+      reverse-proxy:
         ipv4_address: 172.37.0.2
-      - host
+      local:
     ports:
       - 0.0.0.0:${FIREWALL_VPN_INPUT_PORTS}:443 # Goes to caddy
     volumes:
