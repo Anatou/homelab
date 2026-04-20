@@ -23,7 +23,7 @@ chmod +x update-env.sh
 
 ## `.env` file configuration
 
-Configure the .env file with the service's ip, token, and other infos.
+Configure the .env file with the service's ip, token, and other infos. Mainly the variable `HOMEPAGE_ALLOWED_HOSTS` to configure which hosts:port are allowed to access your homepage. Without this configuration, you may get an access denied error.
 
 ## Edit the service
 

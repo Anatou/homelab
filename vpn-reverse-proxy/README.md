@@ -48,11 +48,18 @@ Optionnaly you can specify a domain name for airvpn DDNS. It may be used later w
 ### DDNS
 In order to get HTTPS we need to validate a challenge presented by the ACME. Because we do not have port 80 we will use DNS-01, a DNS-control based challenge.
 
-Go to *[DeSEC](https://desec.io/domains)* and use or create a new domain, then make a new *A* rule pointing to your VPN IP or a *CNAME* rule pointing to the DDNS name you may have set for the forwarded port.
+Go to *[DeSEC](https://desec.io/domains)* and use or create a new domain and copy this domain in the *.env* file (`DOMAIN=xxx`). Then, make a new *A* rule pointing to your VPN IP or a *CNAME* rule pointing to the DDNS name you may have set for the forwarded port.
 
-Then go to *[tokens](https://desec.io/tokens)* and make a new token (or use an old one) and paste it in the *.env* file
+Then go to *[tokens](https://desec.io/tokens)* and make a new token (or use an old one) and paste it in the *.env* file (`DESEC_TOKEN=xxx`). 
+
+### Caddyfile
+The provided Caddyfile shows how the reverse-proxy is used. It may be used as a starting template to make your own configuration.
 
 ## Start the service
 ```shell
 docker compose up -d
 ```
+
+# Update
+
+Run `./update.sh` to easily update (only) the Caddyfile and reload the configuration. The new Caddyfile is pulled from your repo.

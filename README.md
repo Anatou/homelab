@@ -14,6 +14,7 @@ They all run in a private and separate network at home so they cannot interact w
 | Jellyfin | LXC · Not documented | Media streaming · From [Proxmox VE Scripts](https://community-scripts.org/scripts) |
 | Torrenting suite | VM · Documented | Media sharing · Inspired by [TechHutTV](https://github.com/TechHutTV/homelab/tree/main/media) · Publicly exposed using [AirVPN's](https://airvpn.org/) port forwarding |
 | Homepage | LXC · Documented | From [Proxmox VE Scripts](https://community-scripts.org/scripts) |
+| Reverse-Proxy | VM · Documented | Reverse-proxy · Custom made using bricks from the ***torrenting suite*** and my ***self-hosted obsidian livesync*** · Publicly exposed using [AirVPN's](https://airvpn.org/) port forwarding  |
 | Obsidian Self-hosted Livesync | VM · Documented | Custom made for [obsidian-livesync](https://github.com/vrtmrz/obsidian-livesync) · Publicly exposed using [AirVPN's](https://airvpn.org/) port forwarding |
 | Tailscale end node | LXC · Not documented | Mesh networking access point · From [iqfareez's blog](https://iqfareez.com/blog/access-proxmox-remotely-with-tailscale) |
 | BentoPDF | LXC · Not documented | PDF manipulation · From [Proxmox VE Scripts](https://community-scripts.org/scripts) |
