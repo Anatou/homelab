@@ -32,13 +32,19 @@ localhost:2020 {
 		respond "Bar\n" 200 {
 			close
 		}
-		import anatou-dedyn-log
+		#import anatou-dedyn-log
 	}
 
 	@homepage host homepage.{$DOMAIN}
 	handle @homepage {
 		reverse_proxy {$HOMEPAGE_IP}:{$HOMEPAGE_PORT}
-		import anatou-dedyn-log
+		#import anatou-dedyn-log
+	}
+
+	@foundry host foundry.{$DOMAIN}
+	handle @foundry {
+		reverse_proxy {$FOUNDRY_IP}:{$FOUNDRY_PORT}
+		#import anatou-dedyn-log
 	}
 
 	handle {

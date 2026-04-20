@@ -18,15 +18,21 @@ Unoficial docker port [felddy/foundryvtt-docker](https://github.com/felddy/found
 ```bash
 curl -L https://github.com/Anatou/homelab/raw/refs/heads/main/foundry-vtt/compose.yaml > compose.yaml
 curl -L https://github.com/Anatou/homelab/raw/refs/heads/main/foundry-vtt/.env > .env
+mkdir foundry
+chown -R 1000:1000 foundry/
 ```
 
 ## Configuration
 
-Edit the `.env` file and fill the required field `FOUNDRY_RELEASE_URL` with the temporary download URL you can acquire from your user profile page on the Foundry website.
+Edit the `.env` file and fill the required fields `FOUNDRY_RELEASE_URL` and `FOUNDRY_ADMIN_KEY`.
+
+`FOUNDRY_RELEASE_URL` is the temporary download URL you can acquire from your user profile page on the Foundry website.
 1. Navigate to the [Purchased Software Licenses](https://foundryvtt.com/community/anatou/licenses) page.
 2. Change the Operating System menu item to `Node.js`.
 3. Click the `🔗 Timed URL` button to obtain the temporary URL.
 4. Paste this URL in the `.env` file and start the service.
+
+`FOUNDRY_ADMIN_KEY` is an arbitrary key of your choosing (preferably secure)
 
 ## Start the service
 ```shell
