@@ -109,7 +109,7 @@
         proxmoxVMID: {{HOMEPAGE_VAR_OBSIDIAN_PROXMOX_VMID}}
         proxmoxType: {{HOMEPAGE_VAR_OBSIDIAN_PROXMOX_TYPE}}
     - Reverse-Proxy:
-        description: Publicly exposed Reverse-Proxy via AirVPN's port forwarding
+        description: Reverse-Proxy via AirVPN's port forwarding
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3.tosdr.org%2Flogos%2F2669.png&f=1&nofb=1&ipt=d84b237ae529528a3c17ccae0cb48c3e973dc150efbcc86ca4630be330d7728a
         proxmoxNode: {{HOMEPAGE_VAR_REVPROX_PROXMOX_NODE}}
         proxmoxVMID: {{HOMEPAGE_VAR_REVPROX_PROXMOX_VMID}}
