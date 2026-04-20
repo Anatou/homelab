@@ -4,16 +4,6 @@ networks:
     ipam:
       config:
         - subnet: 172.37.0.0/24
-  local:
-    name: local
-    driver: macvlan
-    driver_opts:
-      parent: eth0
-    ipam:
-      config:
-        - subnet: 192.168.100.0/24
-          gateway: 192.168.100.1
-
 
 services:
   # We want to use AirVPN port forwaring as a public entry point
@@ -27,9 +17,9 @@ services:
     networks:
       reverse-proxy:
         ipv4_address: 172.37.0.2
-      local:
     ports:
       - 0.0.0.0:${FIREWALL_VPN_INPUT_PORTS}:443 # Goes to caddy
+      - 2020:2020
     volumes:
       - ./gluetun:/gluetun
     env_file:
