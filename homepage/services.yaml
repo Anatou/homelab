@@ -20,7 +20,8 @@
 
 - Media services:
     - Jellyfin:
-        href: http://{{HOMEPAGE_VAR_IP_JELLYFIN}}:8096/web/#/home
+        # href: http://{{HOMEPAGE_VAR_IP_JELLYFIN}}:8096/web/#/home
+        href: https://jellyfin.anatou.dedyn.io:2201/web/#/home
         description: Media server
         icon: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fazukaar.github.io%2Fcosmos-servapps-official%2Fservapps%2FJellyfin%2Ficon.png&f=1&nofb=1&ipt=499c6721db3f7f47140b3d5f1a3f8e213f7751e714847183c75cab2fbc8ab411
         proxmoxNode: {{HOMEPAGE_VAR_JELLYFIN_PROXMOX_NODE}}

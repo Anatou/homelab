@@ -46,9 +46,14 @@ localhost:2020 {
 		reverse_proxy {$FOUNDRY_IP}:{$FOUNDRY_PORT}
 	}
 
+    @foundryfilebrowser host foundryfilebrowser.{$DOMAIN}
+    handle @foundry-filebrowser {
+        reverse_proxy {$FOUNDRYFILEBROWSER_IP}:{$FOUDNRYFILEBROWSER_PORT}
+    }
+
 	@jellyfin host jellyfin.{$DOMAIN}
 	handle @jellyfin {
-		reverse_proxy {$JELLYFIN_IP}:{$JELLYFIN_PORT}
+		reverse_proxy http://{$JELLYFIN_IP}:{$JELLYFIN_PORT}
 	}
 
 	handle {
